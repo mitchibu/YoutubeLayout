@@ -1,0 +1,41 @@
+<FrameLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent">
+
+	<TextView
+		android:text="Hello World!"
+		android:gravity="center"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"/>
+
+	<jp.gr.java_conf.mitchibu.lib.youtubelayout.YoutubeLayout
+		android:id="@+id/yt"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		app:top_view="@+id/top"
+		app:body_view="@+id/body"
+		app:top_width="16"
+		app:top_height="9"
+		app:vertical_margin="8dp"
+		app:horizontal_margin="8dp">
+		<TextView
+			android:id="@id/top"
+			android:background="#f00"
+			android:text="top"
+			android:textColor="#000"
+			android:gravity="center"
+			android:layout_width="0dp"
+			android:layout_height="0dp"/>
+		<TextView
+			android:id="@id/body"
+			android:background="#0f0"
+			android:text="body"
+			android:textColor="#000"
+			android:gravity="center"
+			android:layout_width="0dp"
+			android:layout_height="0dp"/>
+	</jp.gr.java_conf.mitchibu.lib.youtubelayout.YoutubeLayout>
+
+</FrameLayout>

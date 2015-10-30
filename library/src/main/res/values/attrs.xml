@@ -1,0 +1,10 @@
+<resources>
+	<declare-styleable name="YoutubeLayout">
+		<attr name="top_view" format="reference"/>
+		<attr name="body_view" format="reference"/>
+		<attr name="vertical_margin" format="dimension"/>
+		<attr name="horizontal_margin" format="dimension"/>
+		<attr name="top_width" format="float"/>
+		<attr name="top_height" format="float"/>
+	</declare-styleable>
+</resources>
