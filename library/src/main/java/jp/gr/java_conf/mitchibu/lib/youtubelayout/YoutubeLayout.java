@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.res.Configuration;
 import android.content.res.TypedArray;
 import android.graphics.Rect;
+import android.support.v4.view.ViewCompat;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.VelocityTracker;
@@ -253,7 +254,7 @@ public class YoutubeLayout extends ViewGroup {
 			int childHeightMeasureSpec = MeasureSpec.makeMeasureSpec(height - topView.getMeasuredHeight(), MeasureSpec.EXACTLY);
 			bodyView.measure(childWidthMeasureSpec, childHeightMeasureSpec);
 		}
-		setMeasuredDimension(resolveSizeAndState(width, widthMeasureSpec, 0), resolveSizeAndState(height, heightMeasureSpec, 0));
+		setMeasuredDimension(ViewCompat.resolveSizeAndState(width, widthMeasureSpec, 0), ViewCompat.resolveSizeAndState(height, heightMeasureSpec, 0));
 	}
 
 	@Override
@@ -331,15 +332,15 @@ public class YoutubeLayout extends ViewGroup {
 
 	private void topViewScale() {
 		float s = 1.0f + (float)getScrollY() / getHeight();
-		topView.setPivotX(topView.getWidth());
-		topView.setPivotY(topView.getHeight());
-		topView.setScaleX(s);
-		topView.setScaleY(s);
-		topView.setTranslationX(verticalMargin * (s - 1.0f));
-		topView.setTranslationY(horizontalMargin * (s - 1.0f));
-		bodyView.setAlpha(s);
+		ViewCompat.setPivotX(topView, topView.getWidth());
+		ViewCompat.setPivotY(topView, topView.getHeight());
+		ViewCompat.setScaleX(topView, s);
+		ViewCompat.setScaleY(topView, s);
+		ViewCompat.setTranslationX(topView, verticalMargin * (s - 1.0f));
+		ViewCompat.setTranslationY(topView, horizontalMargin * (s - 1.0f));
+		ViewCompat.setAlpha(bodyView, s);
 
-		topView.setAlpha(1.0f - (float)getScrollX() / getWidth());
+		ViewCompat.setAlpha(topView, 1.0f - (float)getScrollX() / getWidth());
 	}
 
 	public static class LayoutParams extends ViewGroup.LayoutParams {
