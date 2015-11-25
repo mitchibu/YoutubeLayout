@@ -18,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
 		yt.setOnGotOutListener(new YoutubeLayout.OnGotOutListener() {
 			@Override
 			public void onGotOut(YoutubeLayout yt, YoutubeLayout.Cancellation cancellation) {
+				android.util.Log.v("test", "onGotOut");
 				Toast.makeText(MainActivity.this, "onGotOut", Toast.LENGTH_SHORT).show();
 				cancellation.cancel();
 			}

@@ -355,7 +355,9 @@ public class YoutubeLayout extends ViewGroup {
 
 	public class Cancellation {
 		public void cancel() {
-			setScrollX(0);
+			int scrollX = getScrollX();
+			scroller.startScroll(scrollX, getScrollY(), -scrollX, 0);
+			invalidate();
 		}
 	}
 }
