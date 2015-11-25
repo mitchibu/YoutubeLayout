@@ -148,7 +148,7 @@ public class YoutubeLayout extends ViewGroup {
 				layoutByScrollEnd = false;
 				requestLayout();
 			} else if(!isMaximized && onGotOutListener != null && getScrollX() > 0) {
-				onGotOutListener.onGotOut(this);
+				onGotOutListener.onGotOut(this, new Cancellation());
 			}
 		}
 		topViewScale();
@@ -350,6 +350,12 @@ public class YoutubeLayout extends ViewGroup {
 	}
 
 	public interface OnGotOutListener {
-		void onGotOut(YoutubeLayout yt);
+		void onGotOut(YoutubeLayout yt, Cancellation cancellation);
+	}
+
+	public class Cancellation {
+		public void cancel() {
+			setScrollX(0);
+		}
 	}
 }
