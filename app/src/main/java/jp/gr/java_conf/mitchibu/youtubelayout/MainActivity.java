@@ -23,6 +23,18 @@ public class MainActivity extends AppCompatActivity {
 				cancellation.cancel();
 			}
 		});
+		yt.setOnMaximizedListener(new YoutubeLayout.OnMaximizedListener() {
+			@Override
+			public void onMaximized(YoutubeLayout yt) {
+				android.util.Log.v("test", "onMaximized");
+			}
+		});
+		yt.setOnMinimizedListener(new YoutubeLayout.OnMinimizedListener() {
+			@Override
+			public void onMinimized(YoutubeLayout yt) {
+				android.util.Log.v("test", "onMinimized");
+			}
+		});
 	}
 
 	@Override

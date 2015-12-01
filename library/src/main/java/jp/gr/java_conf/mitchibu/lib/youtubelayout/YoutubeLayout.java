@@ -38,6 +38,8 @@ public class YoutubeLayout extends ViewGroup {
 	private int dragDirection = DIRECTION_NONE;
 	private boolean isMaximized = true;
 	private boolean layoutByScrollEnd = false;
+	private OnMaximizedListener onMaximizedListener = null;
+	private OnMinimizedListener onMinimizedListener = null;
 	private OnGotOutListener onGotOutListener = null;
 
 	public YoutubeLayout(Context context, AttributeSet attrs) {
@@ -129,6 +131,14 @@ public class YoutubeLayout extends ViewGroup {
 		}
 	}
 
+	public void setOnMaximizedListener(OnMaximizedListener listener) {
+		onMaximizedListener = listener;
+	}
+
+	public void setOnMinimizedListener(OnMinimizedListener listener) {
+		onMinimizedListener = listener;
+	}
+
 	public void setOnGotOutListener(OnGotOutListener listener) {
 		onGotOutListener = listener;
 	}
@@ -150,6 +160,8 @@ public class YoutubeLayout extends ViewGroup {
 			} else if(!isMaximized && onGotOutListener != null && getScrollX() > 0) {
 				onGotOutListener.onGotOut(this, new Cancellation());
 			}
+			if(isMaximized && onMaximizedListener != null) onMaximizedListener.onMaximized(this);
+			else if(!isMaximized && onMinimizedListener != null) onMinimizedListener.onMinimized(this);
 		}
 		topViewScale();
 	}
@@ -347,6 +359,14 @@ public class YoutubeLayout extends ViewGroup {
 		public LayoutParams(int width, int height) {
 			super(width, height);
 		}
+	}
+
+	public interface OnMaximizedListener {
+		void onMaximized(YoutubeLayout yt);
+	}
+
+	public interface OnMinimizedListener {
+		void onMinimized(YoutubeLayout yt);
 	}
 
 	public interface OnGotOutListener {
